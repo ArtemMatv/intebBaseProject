@@ -1,0 +1,135 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 643
+  Width = 628
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'User_Name=ARTEM'
+      'Password=1234567890'
+      'Database=C:\Study\OBDZ\MOTHERBOARDS.IB'
+      'DriverID=IB')
+    Connected = True
+    Left = 64
+    Top = 16
+  end
+  object producers: TDataSource
+    DataSet = tbProducers
+    Left = 288
+    Top = 64
+  end
+  object chipsets: TDataSource
+    DataSet = tbChipsets
+    Left = 233
+    Top = 176
+  end
+  object ram: TDataSource
+    DataSet = tbRAM
+    Left = 288
+    Top = 296
+  end
+  object sockets: TDataSource
+    DataSet = tbSockets
+    Left = 288
+    Top = 176
+  end
+  object sound_chip: TDataSource
+    DataSet = tbSoundChip
+    Left = 352
+    Top = 176
+  end
+  object motherboards: TDataSource
+    DataSet = tbMothBo
+    Left = 288
+    Top = 120
+  end
+  object MB_RAM: TDataSource
+    DataSet = tbMBRAM
+    Left = 288
+    Top = 240
+  end
+  object tbProducers: TFDTable
+    Active = True
+    IndexFieldNames = 'MB_PR_ID'
+    Connection = FDConnection1
+    UpdateOptions.UpdateTableName = 'MOTHERBOARDS_PRODUCERS'
+    TableName = 'MOTHERBOARDS_PRODUCERS'
+    Left = 64
+    Top = 64
+  end
+  object tbMothBo: TFDTable
+    Active = True
+    IndexFieldNames = 'MB_PR_ID'
+    MasterSource = producers
+    MasterFields = 'MB_PR_ID'
+    Connection = FDConnection1
+    UpdateOptions.UpdateTableName = 'MOTHERBOARDS'
+    TableName = 'MOTHERBOARDS'
+    Left = 64
+    Top = 120
+  end
+  object tbChipsets: TFDTable
+    Active = True
+    IndexFieldNames = 'CHS_ID'
+    MasterSource = motherboards
+    MasterFields = 'CHS_ID'
+    Connection = FDConnection1
+    UpdateOptions.UpdateTableName = 'CHIPSETS'
+    TableName = 'CHIPSETS'
+    Left = 8
+    Top = 176
+  end
+  object tbSockets: TFDTable
+    Active = True
+    IndexFieldNames = 'SCK_ID'
+    MasterSource = motherboards
+    MasterFields = 'SCK_ID'
+    Connection = FDConnection1
+    UpdateOptions.UpdateTableName = 'SOCKETS'
+    TableName = 'SOCKETS'
+    Left = 64
+    Top = 176
+  end
+  object tbSoundChip: TFDTable
+    Active = True
+    IndexFieldNames = 'SCH_ID'
+    MasterSource = motherboards
+    MasterFields = 'SCH_ID'
+    Connection = FDConnection1
+    UpdateOptions.UpdateTableName = 'SOUND_CHIP'
+    TableName = 'SOUND_CHIP'
+    Left = 128
+    Top = 176
+  end
+  object tbMBRAM: TFDTable
+    Active = True
+    IndexFieldNames = 'MB_ID'
+    MasterSource = motherboards
+    MasterFields = 'MB_ID'
+    Connection = FDConnection1
+    UpdateOptions.UpdateTableName = 'MB_RAM'
+    TableName = 'MB_RAM'
+    Left = 64
+    Top = 232
+  end
+  object tbRAM: TFDTable
+    Active = True
+    IndexFieldNames = 'RAM_ID'
+    MasterSource = MB_RAM
+    MasterFields = 'RAM_ID'
+    Connection = FDConnection1
+    UpdateOptions.UpdateTableName = 'RAM'
+    TableName = 'RAM'
+    Left = 64
+    Top = 288
+  end
+  object FDQuery1: TFDQuery
+    Connection = FDConnection1
+    Left = 424
+    Top = 304
+  end
+  object NetHTTPClient1: TNetHTTPClient
+    UserAgent = 'Embarcadero URI Client/1.0'
+    Left = 480
+    Top = 408
+  end
+end
